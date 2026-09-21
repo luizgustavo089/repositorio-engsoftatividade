@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Área da delegacia — Denúncia Anônima</title>
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+
+  <header class="topo">
+    <div class="container">
+      <a class="marca" href="index.html">
+        <span class="escudo" aria-hidden="true">&#128737;</span>
+        <span>
+          <strong>DENÚNCIA ANÔNIMA</strong>
+          <span>SISTEMA INTEGRADO DE SEGURANÇA</span>
+        </span>
+      </a>
+      <button class="abre-menu" aria-label="Abrir menu" aria-expanded="false">&#9776;</button>
+      <nav class="menu">
+        <a href="index.html">Início</a>
+        <a href="denuncia.html">Fazer denúncia</a>
+        <a href="consultar.html">Consultar protocolo</a>
+        <a class="ativo destaque" href="delegacia.html">Área da delegacia</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- ======================= LOGIN ======================= -->
+    <section id="tela-login" class="caixa-estreita">
+      <div class="cartao">
+        <div class="centro">
+          <span style="font-size:2rem" aria-hidden="true">&#128272;</span>
+          <h1>Acesso restrito</h1>
+          <p class="pequeno texto-suave">Acesso exclusivo para administradores da delegacia.</p>
+        </div>
+
+        <div id="aviso-login" class="aviso oculto" role="alert"></div>
+
+        <form id="form-login" novalidate>
+          <div class="campo">
+            <label for="usuario">Usuário</label>
+            <input type="text" id="usuario" value="admin" autocomplete="username">
+          </div>
+          <div class="campo">
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" value="123456" autocomplete="current-password">
+          </div>
+          <div class="credenciais">
+            Credenciais de teste:<br>
+            Usuário: <strong>admin</strong> | Senha: <strong>123456</strong><br>
+            Usuário: <strong>carlos.agente</strong> | Senha: <strong>123456</strong>
+          </div>
+          <button type="submit" class="botao botao-escuro botao-bloco">Entrar no painel</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ======================= PAINEL ======================= -->
+    <section id="tela-painel" class="oculto">
+
+      <div id="aviso-painel" class="aviso oculto" role="status"></div>
+
+      <div class="painel-topo">
+        <div class="identidade">
+          <span class="escudo" aria-hidden="true">&#128737;</span>
+          <div>
+            <strong>Painel de gestão da delegacia</strong>
+            <div class="pequeno" id="identidade-agente"></div>
+          </div>
+        </div>
+        <div class="abas">
+          <button class="aba ativa" data-aba="dashboard">Dashboard</button>
+          <button class="aba" data-aba="denuncias">Denúncias</button>
+          <button class="aba" data-aba="agentes">Administradores</button>
+          <button class="botao botao-vermelho" id="sair">Sair</button>
+        </div>
+      </div>
+
+      <!-- Aba: dashboard -->
+      <div id="aba-dashboard" class="secao-aba">
+        <div class="indicadores">
+          <div class="indicador">
+            <div class="rotulo">TOTAL GERAL</div><div class="numero" id="total-geral">0</div>
+          </div>
+          <div class="indicador i-nova">
+            <div class="rotulo">NOVAS / RECEBIDAS</div><div class="numero" id="total-recebida">0</div>
+          </div>
+          <div class="indicador i-analise">
+            <div class="rotulo">EM ANÁLISE</div><div class="numero" id="total-analise">0</div>
+          </div>
+          <div class="indicador i-investigacao">
+            <div class="rotulo">EM INVESTIGAÇÃO</div><div class="numero" id="total-investigacao">0</div>
+          </div>
+          <div class="indicador i-concluida">
+            <div class="rotulo">CONCLUÍDAS</div><div class="numero" id="total-concluida">0</div>
+          </div>
+          <div class="indicador i-arquivada">
+            <div class="rotulo">ARQUIVADAS</div><div class="numero" id="total-arquivada">0</div>
+          </div>
+        </div>
+
+        <div class="grade-2">
+          <div class="cartao">
+            <h2>Denúncias por nível de urgência</h2>
+            <div id="grafico-urgencia"></div>
+          </div>
+          <div class="cartao">
+            <h2>Categorias mais denunciadas</h2>
+            <div id="grafico-categorias"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Aba: denúncias -->
+      <div id="aba-denuncias" class="secao-aba oculto">
+        <div class="cartao">
+          <h2>Filtros de pesquisa</h2>
+          <div class="filtros">
+            <input type="search" id="filtro-texto" placeholder="Buscar protocolo ou local...">
+            <select id="filtro-categoria"><option value="">Todas as categorias</option></select>
+            <select id="filtro-status"><option value="">Todos os status</option></select>
+            <select id="filtro-urgencia"><option value="">Todas as urgências</option></select>
+            <button class="botao botao-neutro" id="limpar-filtros">Limpar filtros</button>
+          </div>
+        </div>
+
+        <div class="cartao">
+          <p class="pequeno texto-suave" id="contador-denuncias"></p>
+          <div class="rolagem">
+            <table class="tabela">
+              <thead>
+                <tr>
+                  <th>PROTOCOLO</th><th>DATA/HORA</th><th>CATEGORIA</th>
+                  <th>URGÊNCIA</th><th>STATUS</th><th>AÇÃO</th>
+                </tr>
+              </thead>
+              <tbody id="corpo-denuncias"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Aba: administradores -->
+      <div id="aba-agentes" class="secao-aba oculto">
+        <div class="grade-2">
+          <div class="cartao">
+            <h2>Novo administrador</h2>
+            <form id="form-agente">
+              <div class="campo">
+                <label for="agente-nome">Nome completo</label>
+                <input type="text" id="agente-nome" required>
+              </div>
+              <div class="campo">
+                <label for="agente-login">Usuário / login</label>
+                <input type="text" id="agente-login" required>
+              </div>
+              <div class="campo">
+                <label for="agente-setor">Setor / delegacia</label>
+                <input type="text" id="agente-setor" placeholder="Ex.: Delegacia de Crimes Cibernéticos">
+              </div>
+              <div class="campo">
+                <label for="agente-permissao">Permissão</label>
+                <select id="agente-permissao">
+                  <option>Agente Analista</option>
+                  <option>Administrador Geral</option>
+                </select>
+              </div>
+              <button type="submit" class="botao botao-escuro botao-bloco">Cadastrar agente</button>
+              <p class="pequeno texto-suave">O novo acesso é criado com a senha padrão 123456.</p>
+            </form>
+          </div>
+
+          <div class="cartao">
+            <h2>Equipe de administração cadastrada</h2>
+            <div class="rolagem">
+              <table class="tabela">
+                <thead>
+                  <tr><th>NOME</th><th>LOGIN</th><th>SETOR/DELEGACIA</th><th>PERMISSÃO</th><th></th></tr>
+                </thead>
+                <tbody id="corpo-agentes"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Modal de gestão da denúncia -->
+    <div class="modal oculto" id="modal" role="dialog" aria-modal="true">
+      <div class="modal-caixa" id="conteudo-modal"></div>
+    </div>
+
+  </main>
+
+  <footer class="rodape">
+    <div class="container">
+      <strong>Sistema Web de Denúncias Anônimas &copy; <span id="ano">2026</span></strong>
+      Protótipo acadêmico desenvolvido para simulação de gestão e segurança pública.
+    </div>
+  </footer>
+
+  <script src="js/dados.js"></script>
+  <script src="js/comum.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fazer denúncia — Denúncia Anônima</title>
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+
+  <header class="topo">
+    <div class="container">
+      <a class="marca" href="index.html">
+        <span class="escudo" aria-hidden="true">&#128737;</span>
+        <span>
+          <strong>DENÚNCIA ANÔNIMA</strong>
+          <span>SISTEMA INTEGRADO DE SEGURANÇA</span>
+        </span>
+      </a>
+      <button class="abre-menu" aria-label="Abrir menu" aria-expanded="false">&#9776;</button>
+      <nav class="menu">
+        <a href="index.html">Início</a>
+        <a class="ativo" href="denuncia.html">Fazer denúncia</a>
+        <a href="consultar.html">Consultar protocolo</a>
+        <a class="destaque" href="delegacia.html">Área da delegacia</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="caixa-media">
+
+      <div id="aviso-form" class="aviso oculto" role="alert"></div>
+
+      <!-- Formulário -->
+      <section id="bloco-formulario" class="cartao">
+        <h1>Formulário de denúncia anônima</h1>
+        <p class="pequeno texto-suave">Preencha as informações detalhadamente.
+           Os campos marcados com <span class="obrigatorio">*</span> são obrigatórios.</p>
+        <hr>
+
+        <form id="form-denuncia" novalidate>
+
+          <div class="linha-campos-2">
+            <div class="campo">
+              <label for="categoria">Categoria <span class="obrigatorio">*</span></label>
+              <select id="categoria">
+                <option value="">Selecione uma categoria...</option>
+              </select>
+            </div>
+            <div class="campo">
+              <label for="subcategoria">Subcategoria</label>
+              <select id="subcategoria" disabled>
+                <option value="">Selecione primeiro uma categoria</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="linha-campos">
+            <div class="campo">
+              <label for="data-ocorrencia">Data da ocorrência <span class="obrigatorio">*</span></label>
+              <input type="date" id="data-ocorrencia">
+            </div>
+            <div class="campo">
+              <label for="horario">Horário aproximado</label>
+              <input type="time" id="horario">
+            </div>
+            <div class="campo">
+              <label for="urgencia">Nível de urgência <span class="obrigatorio">*</span></label>
+              <select id="urgencia"></select>
+            </div>
+          </div>
+
+          <div class="campo">
+            <label for="local">Local do fato (endereço, ponto de referência ou setor) <span class="obrigatorio">*</span></label>
+            <input type="text" id="local" placeholder="Ex.: Av. Central, nº 100, Bairro Centro / Setor Financeiro">
+          </div>
+
+          <div class="campo">
+            <label for="descricao">Descrição detalhada dos fatos <span class="obrigatorio">*</span></label>
+            <textarea id="descricao" placeholder="Descreva tudo com o maior número de detalhes possível..."></textarea>
+          </div>
+
+          <div class="campo">
+            <label for="envolvidos">Pessoas, veículos ou locais envolvidos</label>
+            <textarea id="envolvidos" style="min-height:80px" placeholder="Ex.: Nome de suspeitos, placas de veículos, descrições físicas..."></textarea>
+          </div>
+
+          <div class="campo">
+            <label for="arquivos">Anexar evidências (fotos, documentos, áudios)</label>
+            <label class="area-arquivo" for="arquivos">
+              <span aria-hidden="true">&#128228;</span><br>
+              Clique ou arraste arquivos para esta área (PNG, JPG, PDF, MP3)
+              <input type="file" id="arquivos" multiple accept=".png,.jpg,.jpeg,.pdf,.mp3">
+            </label>
+            <ul class="lista-arquivos" id="lista-arquivos"></ul>
+          </div>
+
+          <div class="campo">
+            <label for="complementares">Informações complementares</label>
+            <input type="text" id="complementares" placeholder="Instruções específicas para verificação ou outras observações">
+          </div>
+
+          <div class="acoes-form">
+            <button type="button" class="botao botao-neutro" id="cancelar">Cancelar</button>
+            <button type="submit" class="botao botao-escuro">Enviar denúncia</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Confirmação -->
+      <section id="bloco-sucesso" class="oculto">
+        <div class="protocolo-caixa">
+          <h2>Denúncia registrada</h2>
+          <p class="pequeno">Anote os códigos abaixo. Eles não são reenviados e são a única forma de consultar o andamento.</p>
+          <div class="par">
+            <div class="rotulo">PROTOCOLO</div>
+            <div class="valor" id="protocolo-gerado">—</div>
+          </div>
+          <div class="par">
+            <div class="rotulo">CHAVE DE ACESSO</div>
+            <div class="valor" id="chave-gerada">—</div>
+          </div>
+          <div class="hero-acoes" style="justify-content:center">
+            <button class="botao botao-primario" id="copiar-codigos">Copiar códigos</button>
+            <a class="botao botao-azul" href="consultar.html">Consultar agora</a>
+            <a class="botao botao-neutro" href="denuncia.html">Registrar outra</a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="rodape">
+    <div class="container">
+      <strong>Sistema Web de Denúncias Anônimas &copy; <span id="ano">2026</span></strong>
+      Protótipo acadêmico desenvolvido para simulação de gestão e segurança pública.
+    </div>
+  </footer>
+
+  <script src="js/dados.js"></script>
+  <script src="js/comum.js"></script>
+  <script src="js/denuncia.js"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Consultar protocolo — Denúncia Anônima</title>
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+
+  <header class="topo">
+    <div class="container">
+      <a class="marca" href="index.html">
+        <span class="escudo" aria-hidden="true">&#128737;</span>
+        <span>
+          <strong>DENÚNCIA ANÔNIMA</strong>
+          <span>SISTEMA INTEGRADO DE SEGURANÇA</span>
+        </span>
+      </a>
+      <button class="abre-menu" aria-label="Abrir menu" aria-expanded="false">&#9776;</button>
+      <nav class="menu">
+        <a href="index.html">Início</a>
+        <a href="denuncia.html">Fazer denúncia</a>
+        <a class="ativo" href="consultar.html">Consultar protocolo</a>
+        <a class="destaque" href="delegacia.html">Área da delegacia</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="caixa-media">
+
+      <section class="cartao">
+        <h1>Acompanhar denúncia</h1>
+        <p class="pequeno texto-suave">Informe o protocolo e a chave de acesso gerados no momento do envio da denúncia.</p>
+
+        <div id="aviso-consulta" class="aviso oculto" role="alert"></div>
+
+        <form id="form-consulta" novalidate>
+          <div class="linha-campos">
+            <div class="campo">
+              <label for="protocolo">Protocolo</label>
+              <input type="text" id="protocolo" placeholder="DEN-XXXXXX">
+            </div>
+            <div class="campo">
+              <label for="chave">Chave de acesso</label>
+              <input type="text" id="chave" placeholder="Ex.: A1B2C3" maxlength="6">
+            </div>
+            <div class="campo" style="align-self:end">
+              <button type="submit" class="botao botao-azul botao-bloco">Consultar</button>
+            </div>
+          </div>
+        </form>
+
+        <p class="pequeno texto-suave">Para testar o protótipo, use o protocolo <strong>DEN-849201</strong>
+           com a chave <strong>A1B2C3</strong>.</p>
+      </section>
+
+      <section id="resultado" class="cartao oculto"></section>
+
+    </div>
+  </main>
+
+  <footer class="rodape">
+    <div class="container">
+      <strong>Sistema Web de Denúncias Anônimas &copy; <span id="ano">2026</span></strong>
+      Protótipo acadêmico desenvolvido para simulação de gestão e segurança pública.
+    </div>
+  </footer>
+
+  <script src="js/dados.js"></script>
+  <script src="js/comum.js"></script>
+  <script src="js/consulta.js"></script>
+</body>
+</html>
